@@ -1,0 +1,14 @@
+{
+  "name": "Minecraft-AFK-Bot",
+  "version": "1.0.0",
+  "description": "An AFK Minecraft bot that moves on-site to keep Servers open 24/7.",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "author": "Yubaraj Sarkar",
+  "license": "",
+  "dependencies": {
+    "mineflayer": "^4.29.0"
+  }
+}
