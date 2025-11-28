@@ -1,14 +1,17 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 const mineflayer = require('mineflayer');
-const config = require('./config.json');
 
 function createAfkBot() {
   const bot = mineflayer.createBot({
-    host: config.serverHost,
-    port: Number(config.serverPort),
-    username: config.botUsername,
+    host: process.env.SERVER_HOST,
+    port: Number(process.env.SERVER_PORT),
+    username: process.env.BOT_USERNAME,
     auth: 'offline',
-    version: config.mcVersion || false,   // auto-detect unless set manually
-    viewDistance: Number(config.botChunk)
+    version: process.env.MC_VERSION === "false" ? false : process.env.MC_VERSION,
+    viewDistance: Number(process.env.BOT_CHUNK)
   });
 
   let movementPhase = 0;
@@ -17,7 +20,7 @@ function createAfkBot() {
   let movementTimer = null;
 
   bot.once('spawn', () => {
-    console.log(`🚀 Spawned as ${config.botUsername}`);
+    console.log(`🚀 Spawned as ${process.env.BOT_USERNAME}`);
 
     // Sneak after spawn for stability
     setTimeout(() => {
